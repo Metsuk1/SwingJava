@@ -1,0 +1,71 @@
+package gui;
+
+import forms.loginWindow;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import forms.loginWindow;
+import forms.registerWindow;
+import data.interfaces.IDB;
+
+public class gui extends JFrame {
+    private IDB db;
+
+    public gui() {
+        super("Application");
+
+        setSize(500,500);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        addComponents();
+
+    }
+
+    private void addComponents() {
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+
+        JButton login = new JButton("Login");
+        login.setBounds(200, 100, 100, 30);
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new loginWindow(db);
+            }
+        });
+
+
+        JButton register = new JButton("Register");
+        register.setBounds(200, 150, 100, 30);
+        register.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new registerWindow(db);
+            }
+        });
+
+
+        JButton exit = new JButton("Exit");
+        exit.setBounds(200, 200, 100, 30);
+        exit.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+
+        panel.add(login);
+        panel.add(register);
+        panel.add(exit);
+
+        add(panel);
+
+    }
+
+
+
+
+}
