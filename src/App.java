@@ -11,7 +11,7 @@ public class App {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                try{
-                   new gui().setVisible(true);
+                   new gui(db).setVisible(true);
                }catch (Exception e){
                    e.printStackTrace();
                }

@@ -8,12 +8,15 @@ import java.awt.event.ActionListener;
 import forms.loginWindow;
 import forms.registerWindow;
 import data.interfaces.IDB;
+import repository.UserRepository;
 
 public class gui extends JFrame {
     private IDB db;
 
-    public gui() {
+    public gui(IDB db) {
         super("Application");
+        this.db = db;
+
 
         setSize(500,500);
         setLocationRelativeTo(null);
@@ -32,7 +35,8 @@ public class gui extends JFrame {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new loginWindow(db);
+                new loginWindow(new UserRepository(db));
+                setVisible(false);
             }
         });
 
@@ -42,8 +46,8 @@ public class gui extends JFrame {
         register.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new registerWindow(db);
-            }
+                new registerWindow(new UserRepository(db));
+                setVisible(false);            }
         });
 
 
