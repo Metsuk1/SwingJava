@@ -1,12 +1,12 @@
 package gui;
 
-import forms.loginWindow;
+import services.loginWindow;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import forms.loginWindow;
-import forms.registerWindow;
+
+import services.registerWindow;
 import data.interfaces.IDB;
 import repository.UserRepository;
 
@@ -43,6 +43,7 @@ public class gui extends JFrame {
 
         JButton register = new JButton("Register");
         register.setBounds(200, 150, 100, 30);
+
         register.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

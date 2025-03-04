@@ -1,20 +1,22 @@
-package forms;
+package services;
+
+import javax.swing.*;
 
 import repository.UserRepository;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class loginWindow extends JFrame {
+public class registerWindow extends JFrame {
     private final UserRepository userRepository;
 
-    public loginWindow(UserRepository userRepository) {
-        super("Login");
+
+    public registerWindow(UserRepository userRepository) {
+        super("Register");
         this.userRepository = userRepository;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(400, 300 );
         setLocationRelativeTo(null);
         setLayout(null);
 
@@ -36,32 +38,27 @@ public class loginWindow extends JFrame {
         add(textFieldPassword);
 
 
-        JButton buttonLogin = new JButton("Log in");
-        buttonLogin.setBounds(150, 130, 100, 30);
-        add(buttonLogin);
+        JButton buttonRegister = new JButton("Register");
+        buttonRegister.setBounds(150, 130, 100, 30);
+        add(buttonRegister);
 
-        buttonLogin.addActionListener(new ActionListener() {
-
+        buttonRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = textFieldUsername.getText();
                 String password = new String(textFieldPassword.getPassword());
 
                 if(username.isEmpty() || password.isEmpty()) {
-                    JOptionPane.showMessageDialog(loginWindow.this, "Username or Password is Empty");
-
-                    return;
+                    JOptionPane.showMessageDialog(registerWindow.this, "Username and password cannot be empty");
                 }
 
-                boolean success = userRepository.loginUser(username, password);
-                if(success) {
-                   // JOptionPane.showMessageDialog(loginWindow.this, "Login Successful");
-                    setVisible(false);
+                boolean is_register = userRepository.registerUser(username, password);
+                if (is_register) {
+                    JOptionPane.showMessageDialog(registerWindow.this, "You have been registered successfully");
                 }
                 else {
-                    JOptionPane.showMessageDialog(loginWindow.this, "Login Failed");
+                    JOptionPane.showMessageDialog(registerWindow.this, "Something went wrong");
                 }
-
 
             }
         });
@@ -69,19 +66,7 @@ public class loginWindow extends JFrame {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         setVisible(true);
     }
-
 
 }
